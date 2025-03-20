@@ -38,16 +38,13 @@ public class Commandbuy extends EssentialsCommand {
         int amount = 1;
         if (args.length > 1) {
             try {
-                amount = Integer.parseInt(args[1].replaceAll("[^0-9]", ""));
+                amount = Integer.parseInt(args[1]);
             } catch (final NumberFormatException ex) {
                 throw new NotEnoughArgumentsException(ex);
             }
         }
-
-        if (amount < 1) {
-            // TODO: Proper messaging for negative or zero items
-            throw new NotEnoughArgumentsException();
-        }
+        // If user specifies 0 or -n
+        amount = Math.max(0, amount);
 
         final int maxStackSize = user.isAuthorized("essentials.oversizedstacks") ? ess.getSettings().getOversizedStackSize() : itemToBuy.getMaxStackSize();
         final int inventorySpace = Inventories.getSpaceForItem(user.getBase(), maxStackSize, itemToBuy);
