@@ -77,6 +77,10 @@ commands:
     description: Set a player on fire.
     usage: /<command> <player> <seconds>
     aliases: [eburn]
+  buy:
+    description: Buy items.
+    usage: /<command> <itemname> [amount]
+    aliases: [ebuy]
   cartographytable:
     description: Opens up a cartography table.
     usage: /<command>

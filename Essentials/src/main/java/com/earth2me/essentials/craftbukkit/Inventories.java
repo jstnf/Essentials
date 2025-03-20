@@ -132,6 +132,30 @@ public final class Inventories {
         return true;
     }
 
+    // This will ignore the given ItemStack amount (setting it to 1)
+    // and return the number of this item the inventory has space for
+    public static int getSpaceForItem(final Player player, final int maxStack, final ItemStack stack) {
+        if (isEmpty(stack)) {
+            return 0;
+        }
+
+        int space = 0;
+        final int itemMax = Math.max(maxStack, stack.getMaxStackSize());
+
+        // Before parsing, normalize item amount to 1
+        final ItemStack normalizedItem = stack.clone();
+        normalizedItem.setAmount(1);
+
+        final InventoryData inventoryData = parseInventoryData(player.getInventory(), new ItemStack[]{normalizedItem}, maxStack, false);
+        space += inventoryData.getEmptySlots().size() * itemMax;
+
+        for (final ItemStack item : inventoryData.getPartialSlots().keySet()) {
+            space += itemMax - item.getAmount();
+        }
+
+        return space;
+    }
+
     public static Map<Integer, ItemStack> addItem(final Player player, final ItemStack... items) {
         return addItem(player, 0, false, items);
     }
