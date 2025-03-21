@@ -101,6 +101,10 @@ commands:
     description: Describes your current bearing.
     usage: /<command>
     aliases: [ecompass,direction,edirection]
+  cost:
+    description: Calculates the cost of an item in hand or as specified.
+    usage: /<command> [itemname] [amount]
+    aliases: [ebuyprice,buyprice,ecost]
   createkit:
     description: Create a kit in game!
     usage: /<command> <kitname> <delay>

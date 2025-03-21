@@ -1,0 +1,26 @@
+# Determines how much items can be bought for on the server.
+# This can be set in this file, or by running the /setcost command.
+cost:
+
+  # Items not listed in this file will not be buyable on the server
+  # Setting the cost to 0 will buy items for free, delete the item or set to -1 to disable.
+
+  # This will set the cost of all logs to '10'
+  log: 10.0
+
+  # This will work similar to the above syntax
+  wool:
+    '0': 100
+
+  # This will only allow buying leaves with datavalue '0' and '1'
+  leaves:
+    '0': 5.0
+    '1': 5.0
+
+  # This will allow the buying of all, but buys '0' slightly cheaper
+  sapling:
+    '0': 10.0
+    '*': 12.5
+
+
+  diamond: 1000.0
